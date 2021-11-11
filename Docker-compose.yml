@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  expense-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    container_name: expense-api
+    links:
+      - mongo-db
+  mongo-db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: mongo-db
+    volumes:
+      - ./db/:/data/db
